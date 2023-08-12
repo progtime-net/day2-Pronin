@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Calculator calculator = new Calculator();
+            Console.WriteLine("Введите ваш пример по шаблону: 2 + 2");
+            calculator.InputAndCalculate();
         }
     }
 }
