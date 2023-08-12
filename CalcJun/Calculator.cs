@@ -10,6 +10,10 @@ namespace CalcJun
 {
     public class Calculator : ICalculator
     {
+        private List<IOperation> operations = new List<IOperation>()
+        {
+            new OperationMinus(), new OperationPlus(), new OperationDev(), new OperationYmn()
+        };
         public void InputAndCalculate()
         {
             Console.Write("Ваш пример: ");
@@ -24,25 +28,14 @@ namespace CalcJun
 
         public float ExecuteOperation(string operation, float a, float b)
         {
-            IOperation oper = null;
-
-            if (operation == "+")
+            foreach (IOperation op in operations)
             {
-                oper = new OperationPlus();
-            } 
-            else if (operation == "-")
-            {
-                oper = new OperationMinus();
+                if (op.Name == operation)
+                {
+                    return op.Execute(a, b);
+                }
             }
-            else if (operation == "/")
-            {
-                oper = new OperationDev();
-            }
-            else if (operation == "*") 
-            {
-                oper = new OperationYmn();
-            }
-            return oper.Execute(a, b);
+            return 0;
         }
     }
 }
